@@ -1,0 +1,74 @@
+.data-hora {
+    text-align: center;
+}
+
+#btn-dialog-fechar {
+    position: absolute;
+    top: 0;
+    right: 0;
+}
+
+#div-btn-registrar-ponto {
+    text-align: center;
+}
+
+.data-hora p {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 3rem;
+}
+
+#btn-registrar-ponto, #btn-dialog-registrar-ponto {
+    font-size: 1.5rem;
+    padding: 25px;
+    border: 0px;
+    background-color: blue;
+    color: white;
+}
+
+#btn-registrar-ponto:hover {
+    background-color: red;
+}
+
+#btn-registrar-ponto:active {
+    background-color: black;
+}
+
+#select-tipos-ponto {
+    font-size: 1.5rem;
+    padding: 25px;
+    
+}
+
+#dialog-ponto p {
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 300;
+    font-style: normal;
+    font-size: 2rem;    
+}
+
+#btn-dialog-fechar {
+    padding: 15px;
+    border: 0px;
+    background-color: red;
+    color: white;
+    font-size: 1.1rem;
+}
+
+.hidden {
+    opacity: 0;
+}
+
+.show {
+    opacity: 1;
+}
+
+#div-alerta {
+    background-color: green;
+    color: white;
+    padding: 15px;
+    position: fixed;
+    right: 15px;
+    bottom: 15px;
+}
