@@ -189,18 +189,3 @@ btnFecharDialogAjuste.addEventListener("click", () => {
     dialogAjustePonto.close();
 });
 
-const btnDialogAjustarPonto = document.getElementById("btn-dialog-fechar-ajuste");
-btnDialogRegistrarPonto.addEventListener("click", async () => {
-    let data = dataCompleta();
-    let hora = horaCompleta();
-    let tipoPonto = document.getElementById("select-tipos-ponto").value;
-
-    let location = await getUserLocation();
-
-    let ponto = {
-        "data": data,
-        "hora": hora,
-        "tipo": tipoPonto,
-        "location": location,
-        "id": 1
-    }
