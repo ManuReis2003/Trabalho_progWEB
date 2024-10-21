@@ -1,3 +1,7 @@
 .abcd p {
     color: red;
 }
+.data-passada {
+    background-color: lightyellow; /* Exemplo de cor para destacar */
+    border: 1px solid orange;
+}

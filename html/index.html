@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Sistema de controle de ponto</title>
-    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="../css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@300;400;500;600;700&display=swap" rel="stylesheet">
@@ -15,6 +15,8 @@
         <p id="dia-mes-ano"></p>
         <p id="hora-min-seg"></p>
     </div>
+
+    <!-- Registrar pontos - presente-->
     <dialog id="dialog-ponto">
         <p id="dialog-data">Data</p>
         <p id="dialog-hora">Hora</p>
@@ -28,11 +30,34 @@
         <button id="btn-dialog-fechar">X</button>
     </dialog>
     <div id="div-btn-registrar-ponto">
-        <button id="btn-registrar-ponto">Registrar ponto!</button>
+        <button id="btn-registrar-ponto">Registrar ponto1</button>
+    
+
+
+        <!-- Ajuste de pontos-->
+    <div id="div-btn-ajustar-ponto">
+        <button id="btn-ajustar-ponto">Ajustar ponto</button> <!--  Botão para ajustar ponto -->
+
     </div>
+
+    <dialog id="dialog-ajuste"></dialog>
+        <h2>Ajustar Pontos</h2>
+        <p>Escolha uma data e hora para ajustar seu ponto:</p>
+        <input type="date" id="input-data" max="">
+        <input type="time" id="input-hora">
+        <button id="btn-ajustar-ponto-confirmar">Ajustar Ponto</button> <!--Botão de ajustar dentro do Dialog -->
+        <button id="btn-dialog-fechar-ajuste">X</button>
+    </dialog>
+
     <div class="hidden" id="div-alerta">
-        <p>Ponto registrado com sucesso!</p>
+        <p>Ponto registrado com sucesso!</p> <!-- Div para alerta de registro-->
     </div>
-    <script src="js/index.js"></script>
+
+    <div class="hidden" id="div-alertaajuste">   <!--  Div para alerta de ajuste -->
+
+        <p>Ajuste realizado com sucesso!</p>
+    </div>
+
+    <script src="../js/index.js"></script>
 </body>
 </html>

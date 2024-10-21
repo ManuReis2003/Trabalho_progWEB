@@ -9,7 +9,7 @@ function criarRelatorio() {
         const divRegistro = document.createElement("div");
         divRegistro.classList.add("abcd");
         
-        // para cara registro, temos
+        // para carda registro, temos
         // hora: registro.hora (já está na variável hora)
         // data: registro.data
         // tipo: registro.tipo
@@ -35,5 +35,22 @@ function criarRelatorio() {
 
     */
 }
+// REQUISITO 1 - MANU 
+function criarRelatorio() {
+    const containerRegistros = document.getElementById("container-registros");
+    let registros = JSON.parse(localStorage.getItem("registro"));
+    const today = new Date().toISOString().split("T")[0]; // Data atual no formato YYYY-MM-DD
 
-criarRelatorio();
+    registros.forEach(registro => {
+        const divRegistro = document.createElement("div");
+        divRegistro.classList.add("registro");
+
+        // Verifica se a data do registro é anterior à data atual
+        if (registro.data < today) {
+            divRegistro.classList.add("data-passada"); // Adiciona uma classe específica
+        }
+
+        divRegistro.innerHTML = `<p>${registro.tipo} | ${registro.data} | ${registro.hora}</p>`;
+        containerRegistros.appendChild(divRegistro);
+    });
+}

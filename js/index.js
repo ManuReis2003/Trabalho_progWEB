@@ -1,5 +1,3 @@
-// TO-DO:
-// Organizar código
 
 const diaSemana = document.getElementById("dia-semana");
 const diaMesAno = document.getElementById("dia-mes-ano");
@@ -160,4 +158,49 @@ setInterval(atualizaHoraDialog, 1000);
 diaSemana.textContent = daySemana();
 diaMesAno.textContent = dataCompleta();
 
- 
+
+//  Requisito 1 - MANU
+// Selecionar elementos do DOM
+const ajusteponto =document.getElementById("btn-ajustar-ponto") //const - Recebe o document para manipular o botão
+
+ajusteponto.addEventListener("click")  // Executa a função quando ocorrer determinado evento ( evento de click )
+
+
+
+
+const btnAjustarPonto = document.getElementById("btn-ajustar-ponto");
+//const dialogAjustePonto = document.getElementById("ajusteponto");
+const btnAjustarPontoConfirmar = document.getElementById("btn-ajustar-ponto-confirmar");
+const inputData = document.getElementById("input-data");
+const inputHora = document.getElementById("input-hora");
+const divAlertaajuste = document.getElementById("div-alertaajuste");
+
+// Configurar a data máxima para o campo de data
+const today = new Date().toISOString().split("T")[0];
+inputData.setAttribute("max", today);
+
+// Abrir o diálogo de ajuste de ponto
+btnAjustarPonto.addEventListener("click", () => {
+    dialogAjustePonto.showModal();
+});
+
+// Fechar o diálogo de ajuste de ponto
+btnFecharDialogAjuste.addEventListener("click", () => {
+    dialogAjustePonto.close();
+});
+
+const btnDialogAjustarPonto = document.getElementById("btn-dialog-fechar-ajuste");
+btnDialogRegistrarPonto.addEventListener("click", async () => {
+    let data = dataCompleta();
+    let hora = horaCompleta();
+    let tipoPonto = document.getElementById("select-tipos-ponto").value;
+
+    let location = await getUserLocation();
+
+    let ponto = {
+        "data": data,
+        "hora": hora,
+        "tipo": tipoPonto,
+        "location": location,
+        "id": 1
+    }
