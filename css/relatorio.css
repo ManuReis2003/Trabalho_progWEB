@@ -12,33 +12,44 @@
 
         #container {
             display: flex;
-            flex-direction: row;
         }
-
+        
         #menu {
+            position: fixed; /* Faz o menu ficar fixo */
+            top: 0; /* Alinha o menu ao topo */
+            left: 0; /* Alinha o menu à esquerda */
             width: 200px;
+            height: 100%; /* Faz o menu ocupar toda a altura da tela */
             background-color: #333;
             padding: 20px;
             color: #fff;
+            border-radius: 0 4px 4px 0; /* Ajusta os cantos */
+            text-align: center;
         }
-
-        #menu button {
+        
+        #menu a {
             width: 100%;
             padding: 10px;
-            margin: 10px 0;
+            margin: 10px -10px;
+            border-radius: 7px;
             background-color: #444;
             color: #fff;
             border: none;
             cursor: pointer;
+            display: block;
+            text-decoration: none;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
         }
+        
 
-        #menu button:hover {
-            background-color: #555;
+        #menu a:hover {
+            background-color: #727272;
         }
 
         #main-content {
             flex: 1;
             padding: 20px;
+            padding-left:280px;
         }
 
         #filtro {
@@ -110,7 +121,6 @@
             font-size: 28px;
             font-weight: bold;
         }
-        
         .close:hover, .close:focus {
             color: #000;
             text-decoration: none;

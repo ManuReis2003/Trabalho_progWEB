@@ -7,7 +7,6 @@ const arrayDayWeek = ["Domingo","Segunda-feira","Terça-feira","Quarta-feira","Q
 const dialogPonto = document.getElementById("dialog-ponto");
 
 
-
 function getUserLocation() {
     return new Promise((resolve, reject) => {
         navigator.geolocation.getCurrentPosition((position) => {
@@ -47,18 +46,13 @@ btnRegistrarPonto.addEventListener("click", () => {
     let ultimoPonto = localStorage.getItem("tipoUltimoPonto");
     dialogSelect.value = proxPonto[ultimoPonto];
     
-    
-    //dialogHora.textContent = horaCompleta();
-
     dialogPonto.showModal();
 });
-
-
+// DIALOG AJUSTAR - BOTÃO FECHAR
 const btnDialogFechar = document.getElementById("btn-dialog-fechar");
 btnDialogFechar.addEventListener("click", () => {
     dialogPonto.close();
 });
-
 
 function recuperaPontosLocalStorage() {
     let todosOsPontos = localStorage.getItem("registro");
@@ -69,8 +63,6 @@ function recuperaPontosLocalStorage() {
 
     return JSON.parse(todosOsPontos);
 }
-
-
 
 function salvarRegistroLocalStorage(ponto) {
     let pontos = recuperaPontosLocalStorage();
@@ -161,31 +153,29 @@ diaMesAno.textContent = dataCompleta();
 
 //  Requisito 1 - MANU
 // Selecionar elementos do DOM
-const ajusteponto =document.getElementById("btn-ajustar-ponto") //const - Recebe o document para manipular o botão
-
-ajusteponto.addEventListener("click")  // Executa a função quando ocorrer determinado evento ( evento de click )
-
-
-
 
 const btnAjustarPonto = document.getElementById("btn-ajustar-ponto");
-//const dialogAjustePonto = document.getElementById("ajusteponto");
-const btnAjustarPontoConfirmar = document.getElementById("btn-ajustar-ponto-confirmar");
-const inputData = document.getElementById("input-data");
-const inputHora = document.getElementById("input-hora");
-const divAlertaajuste = document.getElementById("div-alertaajuste");
+const dialogAjuste = document.getElementById("dialog-ajuste");
 
-// Configurar a data máxima para o campo de data
-const today = new Date().toISOString().split("T")[0];
-inputData.setAttribute("max", today);
-
-// Abrir o diálogo de ajuste de ponto
 btnAjustarPonto.addEventListener("click", () => {
-    dialogAjustePonto.showModal();
+    dialogAjuste.showModal();
 });
 
-// Fechar o diálogo de ajuste de ponto
-btnFecharDialogAjuste.addEventListener("click", () => {
-    dialogAjustePonto.close();
-});
 
+const btnDialogEnviarAjuste = document.getElementById("btn-dialog-enviar-ajuste");
+btnDialogEnviarAjuste.addEventListener("click", () => {
+    const dataAjuste = document.getElementById("input-data-ajuste").value;
+    const horaAjuste = document.getElementById("input-hora-ajuste").value;
+
+    // Aqui você pode adicionar a lógica para enviar ou processar os dados
+    console.log("Data:", dataAjuste, "Hora:", horaAjuste);
+});
+// Definindo a data máxima para o campo de data
+const inputDataAjuste = document.getElementById("input-data-ajuste");
+const today = new Date().toISOString().split('T')[0]; // Obtém a data atual no formato YYYY-MM-DD
+inputDataAjuste.setAttribute('max', today); // Permitir apenas datas até hoje
+
+const btnFecharDialog = document.getElementById("btn-fechar-dialog");
+btnFecharDialog.addEventListener("click", () => {
+    dialogAjuste.close(); // Fecha o diálogo
+});
