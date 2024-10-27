@@ -45,8 +45,12 @@
         <div class="modal-content">
             <span class="close" onclick="fecharModal()">&times;</span>
             <h2>Incluir/Editar Batida</h2>
-            <label for="data-modal">Data:</label>
-            <input type="date" id="data-modal" required><br>
+
+            <!-- <label for="data-modal">Data:</label>
+            <input type="date" id="data-modal" required><br> -->
+
+            <label for="hora-modal">Hora:</label>
+            <input type="time" id="hora-modal" required><br>
 
             <label for="tipo-batida-modal">Tipo de batida:</label>
             <select id="tipo-batida-modal">
@@ -56,7 +60,7 @@
                 <option value="volta-intervalo">Volta do Intervalo</option>
             </select><br>
 
-            <label for="justificativa-modal">Justificativa (opcional):</label><br>
+            <label for="justificativa-modal">Justificativa:</label><br>
             <textarea id="justificativa-modal" rows="4" cols="50" placeholder="Digite uma justificativa caso necessário..."></textarea><br>
 
             <button onclick="salvarBatidaModal()">Salvar</button>
@@ -65,4 +69,6 @@
 
     <script src="../js/relatorio.js"></script>
 </body>
+
+
 </html>
