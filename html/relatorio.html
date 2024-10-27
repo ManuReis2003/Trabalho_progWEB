@@ -17,6 +17,7 @@
     
         <div id="main-content">
             <h1>Relatório de Pontos</h1>
+
             <div id="filtro">
                 <label for="data-inicio" class="date-label">Selecione o período:</label>
                 <input type="date" id="data-inicio" class="date-input">
@@ -38,6 +39,30 @@
             </div>
         </div>
     </div>
+
+    <!-- Modal para Incluir/Editar Batida -->
+    <div id="modal-batida" class="modal">
+        <div class="modal-content">
+            <span class="close" onclick="fecharModal()">&times;</span>
+            <h2>Incluir/Editar Batida</h2>
+            <label for="data-modal">Data:</label>
+            <input type="date" id="data-modal" required><br>
+
+            <label for="tipo-batida-modal">Tipo de batida:</label>
+            <select id="tipo-batida-modal">
+                <option value="entrada">Entrada</option>
+                <option value="saida">Saída</option>
+                <option value="intervalo">Intervalo</option>
+                <option value="volta-intervalo">Volta do Intervalo</option>
+            </select><br>
+
+            <label for="justificativa-modal">Justificativa (opcional):</label><br>
+            <textarea id="justificativa-modal" rows="4" cols="50" placeholder="Digite uma justificativa caso necessário..."></textarea><br>
+
+            <button onclick="salvarBatidaModal()">Salvar</button>
+        </div>
+    </div>
+
     <script src="../js/relatorio.js"></script>
 </body>
 </html>

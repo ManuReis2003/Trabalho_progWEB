@@ -1,79 +1,32 @@
-// function criarRelatorio() {
-
-//     const containerRegistros = document.getElementById("container-registros");
-
-//     let registros = JSON.parse(localStorage.getItem("registro"));
-//     registros.forEach(registro => {
-//         console.log(registro);
-        
-//         const divRegistro = document.createElement("div");
-//         divRegistro.classList.add("abcd");
-        
-//         // para carda registro, temos
-//         // hora: registro.hora (já está na variável hora)
-//         // data: registro.data
-//         // tipo: registro.tipo
-
-//         let hora = registro.hora;
-//         let data = registro.data;
-//         let tipo = registro.tipo;
-
-//         divRegistro.innerHTML = `<p> ${tipo} | ${data} | ${hora} </p>`
-//         const buttonEditar = document.createElement("button");
-
-
-//         // Adicionar botões
-//         containerRegistros.appendChild(divRegistro);
-//         divRegistro.appendChild(buttonEditar);
-//     });
-
-//     /* 
-//     2. iterar sobre os registros
-//     2.1 para cada registro, criar um elemento na página
-//     2.2 Tipo | hora | obs? | anexo? | editar | excluir
-//     2.3 agrupar registros por data
-
-//     */
-// }
-// // REQUISITO 1 - MANU 
-// function criarRelatorio() {
-//     const containerRegistros = document.getElementById("container-registros");
-//     let registros = JSON.parse(localStorage.getItem("registro"));
-//     const today = new Date().toISOString().split("T")[0]; // Data atual no formato YYYY-MM-DD
-
-//     registros.forEach(registro => {
-//         const divRegistro = document.createElement("div");
-//         divRegistro.classList.add("registro");
-
-//         // Verifica se a data do registro é anterior à data atual
-//         if (registro.data < today) {
-//             divRegistro.classList.add("data-passada"); // Adiciona uma classe específica
-//         }
-
-//         divRegistro.innerHTML = `<p>${registro.tipo} | ${registro.data} | ${registro.hora}</p>`;
-//         containerRegistros.appendChild(divRegistro);
-//     });
-// }
 
 // Inicializar batidas no localStorage, se não existir
-let batidas = JSON.parse(localStorage.getItem('batidas')) || [];
+let batidas = JSON.parse(localStorage.getItem('batidas')) || []; // essa linha diz que a variável batidas será um array preenchido pelos dados trazidos do navegador (localStorage), o JSON.parse serve para converter tipos de dados, batidas(array) -> localStorage(String) e vice versa 
 
 // Função para salvar batidas no localStorage
 function salvarBatidas() {
     localStorage.setItem('batidas', JSON.stringify(batidas));
-}
+} // essa função tarnfora o array batidas em uma string JSON e armazena no localStorage 
 
 // Função para registrar nova batida (essa função seria chamada da tela de relógio)
-function registrarBatida(data, entrada, saida) {
+function registrarBatida(data, tipoBatida, justificativa) {
     // Verificar se já existe batida nesse dia
     const batidaExistente = batidas.find(b => b.data === data);
 
+    const novaBatida = {
+        data: data,
+        tipo: tipoBatida,
+        justificativa: justificativa || "Sem justificativa",
+        hora: new Date().toLocaleTimeString() // Armazena a hora atual
+    };
+
     if (batidaExistente) {
-        batidaExistente.entrada = entrada || batidaExistente.entrada;
-        batidaExistente.saida = saida || batidaExistente.saida;
+        batidaExistente.registros.push(novaBatida);
     } else {
         // Adicionar nova batida
-        batidas.push({ data, entrada, saida });
+        batidas.push({
+            data: data,
+            registros: [novaBatida]
+        });
     }
 
     salvarBatidas();  // Atualiza o localStorage
@@ -108,7 +61,7 @@ function renderizarBatidas(filtroInicio = null, filtroFim = null) {
     let diasDoMes = getDiasDoMes(anoAtual, mesAtual);
 
     // Aplicar filtro, se houver
-    if (filtroInicio && filtroFim) {  //verifica se as variaveis filtroInicio e filtroFim estao definidas e tem valores
+    if (filtroInicio && filtroFim) {  
         const dataInicio = new Date(filtroInicio);
         const dataFim = new Date(filtroFim);
         diasDoMes = diasDoMes.filter(dia => {
@@ -124,8 +77,11 @@ function renderizarBatidas(filtroInicio = null, filtroFim = null) {
         tbody.innerHTML += `
             <tr>
                 <td>${new Date(dia.data).toLocaleDateString('pt-BR')}</td>
-                <td>${batidaDoDia ? batidaDoDia.entrada : 'Sem batida'}</td>
-                <td>${batidaDoDia ? batidaDoDia.saida : 'Sem batida'}</td>
+                <td>
+                    ${batidaDoDia ? batidaDoDia.registros.map(registro => `
+                        <p>Tipo: ${registro.tipo}, Hora: ${registro.hora}, Justificativa: ${registro.justificativa}</p>
+                    `).join('') : 'Sem batida'}
+                </td>
                 <td>
                     <button onclick="abrirModal('${dia.data}')">Incluir/Editar</button>
                 </td>
@@ -141,10 +97,30 @@ function renderizarBatidas(filtroInicio = null, filtroFim = null) {
 
 // Função para abrir modal de edição/inclusão de batida
 function abrirModal(data) {
-    const entrada = prompt("Informe o horário de entrada (HH:MM):");
-    const saida = prompt("Informe o horário de saída (HH:MM):");
-    registrarBatida(data, entrada, saida);
-    renderizarBatidas();  // Recarregar tabela
+    // Exibe a modal com os campos de escolha de tipo e justificativa
+    document.getElementById('modal-batida').style.display = 'block';
+    document.getElementById('data-modal').value = data; // Preenche o campo data com o dia selecionado
+}
+
+// Função para fechar a modal
+function fecharModal() {
+    document.getElementById('modal-batida').style.display = 'none';
+}
+
+// Função para salvar a batida através da modal
+function salvarBatidaModal() {
+    const data = document.getElementById('data-modal').value;
+    const tipoBatida = document.getElementById('tipo-batida-modal').value;
+    const justificativa = document.getElementById('justificativa-modal').value;
+
+    if (!data) {
+        alert("Por favor, selecione uma data.");
+        return;
+    }
+
+    registrarBatida(data, tipoBatida, justificativa);
+    fecharModal(); // Fecha a modal após salvar
+    renderizarBatidas();  // Recarrega a tabela
 }
 
 // Função para aplicar o filtro de período
@@ -163,3 +139,4 @@ function aplicarFiltro() {
 document.addEventListener('DOMContentLoaded', function () {
     renderizarBatidas();  // Renderiza a tabela quando a página carrega
 });
+
