@@ -2,12 +2,6 @@
     text-align: center;
 }
 
-#btn-dialog-fechar {
-    position: absolute;
-    top: 0;
-    right: 0;
-}
-
 #div-btn-registrar-ponto {
     text-align: center;
 }
@@ -25,9 +19,11 @@
     border: 0px;
     background-color: rgb(80, 11, 241);
     color: white;
+    border-radius: 4px;
+
 }
 
-#btn-registrar-ponto:hover {
+#btn-registrar-ponto:hover, #btn-ajustar-ponto:hover {
     background-color: red;
 }
 
@@ -54,6 +50,10 @@
     background-color: red;
     color: white;
     font-size: 1.1rem;
+    position: absolute;
+    top: 0;
+    right: 0;
+    border-radius: 0 4px 0 4px;
 }
 .hidden {
     opacity: 0;
@@ -75,11 +75,39 @@
 #btn-ajustar-ponto{
     font-size: 1.5rem;
     padding: 23px;
-    margin-top: 8px;
-    margin-left: 10px;
+    margin-top: 22px;
+    margin-left: 2px;
+    padding-left: 40px;
+    padding-right: 34px;
     border: 0px;
     background-color: rgb(80, 11, 241);
     color: white;
+    text-align: center;
+    border-radius: 4px;
+}
+/* #dialog-ajuste, {
+    width: 50%;
+    height: 50vh;
+    border: solid 3px black;
+    border-color: #444;
+    font-family: "Rajdhani", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    font-size: 2rem;    
+    
+} 
+/*  fechar modal Ajuste */
+.close {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.close:hover, .close:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
 }
 #container {
     display: flex;

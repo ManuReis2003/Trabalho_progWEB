@@ -32,29 +32,39 @@
     <div id="div-btn-registrar-ponto">
         <button id="btn-registrar-ponto">Registrar ponto</button>
     
-
+        <div class="hidden" id="div-alerta">
+            <p>Ponto registrado com sucesso!</p> <!-- Div para alerta de registro-->
+        </div>
 
         <!-- Ajuste de pontos-->
+
+        <dialog id="dialog-ajuste">
+            <form method="dialog">
+                <p><b>Ajuste seu ponto</b></p>
+                
+                <p id="ajuste-data">Data:</p>
+                <input type="date" id="input-data-ajuste" required>
+                <br>
+                <p id="ajuste-hora">Hora:</p>
+                <input type="time" id="input-hora-ajuste" required>
+                
+                <div>
+                    <br>
+                    <button id="btn-dialog-enviar-ajuste">Enviar</button>
+                    <button id="btn-dialog-fechar-ajuste" type="button">Fechar</button>
+                    <span class="close" onclick="fecharModal()">&times;</span>
+                </div>
+
+        </form>
+    </dialog>
+    
     <div id="div-btn-ajustar-ponto">
-        <button id="btn-ajustar-ponto">Ajustar ponto</button> <!--  Botão para ajustar ponto -->
-
+        <button id="btn-ajustar-ponto">Ajustar Ponto</button>
     </div>
-
-    <dialog id="dialog-ajuste"></dialog>
-        <h2>Ajustar Pontos</h2>
-        <p>Escolha uma data e hora para ajustar seu ponto:</p>
-        <input type="date" id="input-data" max="">
-        <input type="time" id="input-hora">
-        <button id="btn-ajustar-ponto-confirmar">Ajustar Ponto</button> <!--Botão de ajustar dentro do Dialog -->
-        <button id="btn-dialog-fechar-ajuste">X</button>
+       <!--  <button id="btn-dialog-fechar-ajuste"></button>-->
     </dialog>
 
-    <div class="hidden" id="div-alerta">
-        <p>Ponto registrado com sucesso!</p> <!-- Div para alerta de registro-->
-    </div>
-
     <div class="hidden" id="div-alertaajuste">   <!--  Div para alerta de ajuste -->
-
         <p>Ajuste realizado com sucesso!</p>
     </div>
 
