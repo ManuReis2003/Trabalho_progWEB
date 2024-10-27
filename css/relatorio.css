@@ -49,6 +49,7 @@
         #main-content {
             flex: 1;
             padding: 20px;
+            padding-left:280px;
         }
 
         #filtro {
