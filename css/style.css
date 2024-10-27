@@ -82,6 +82,19 @@
     border: 0px;
     background-color: rgb(80, 11, 241);
     color: white;
+    border-radius: 4px;
+    
+}
+#btn-fechar-dialog, #btn-dialog-enviar-ajuste{
+    font-size: 1.5rem;
+    padding: 23px;
+    margin-top: 15px;
+    margin-left: 2px;
+    padding-left: 5px;
+    padding-right: 5px;
+    border: 0px;
+    background-color: rgb(80, 11, 241);
+    color: white;
     text-align: center;
     border-radius: 4px;
 }

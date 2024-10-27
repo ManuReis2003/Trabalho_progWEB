@@ -48,7 +48,7 @@ btnRegistrarPonto.addEventListener("click", () => {
     
     dialogPonto.showModal();
 });
-
+// DIALOG AJUSTAR - BOTÃO FECHAR
 const btnDialogFechar = document.getElementById("btn-dialog-fechar");
 btnDialogFechar.addEventListener("click", () => {
     dialogPonto.close();
@@ -175,3 +175,7 @@ const inputDataAjuste = document.getElementById("input-data-ajuste");
 const today = new Date().toISOString().split('T')[0]; // Obtém a data atual no formato YYYY-MM-DD
 inputDataAjuste.setAttribute('max', today); // Permitir apenas datas até hoje
 
+const btnFecharDialog = document.getElementById("btn-fechar-dialog");
+btnFecharDialog.addEventListener("click", () => {
+    dialogAjuste.close(); // Fecha o diálogo
+});
