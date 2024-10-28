@@ -1,154 +1,3 @@
-// let batidas = JSON.parse(localStorage.getItem('batidas')) || [];
-
-// // Função para salvar batidas no localStorage
-// function salvarBatidas() {
-//     localStorage.setItem('batidas', JSON.stringify(batidas));
-// }
-
-// // Função para registrar nova batida
-// function registrarBatida(data, tipoBatida, justificativa, hora, manual = false) {
-//     const batidaExistente = batidas.find(b => b.data === data);
-//     const novaBatida = {
-//         data: data,
-//         tipo: tipoBatida,
-//         justificativa: justificativa || "Sem justificativa",
-//         hora: hora,
-//         manual: manual
-//     };
-
-//     if (batidaExistente) {
-//         batidaExistente.registros.push(novaBatida);
-//     } else {
-//         batidas.push({
-//             data: data,
-//             registros: [novaBatida]
-//         });
-//     }
-
-//     salvarBatidas();
-// }
-
-// // Função para verificar se a data e hora selecionadas são no futuro
-// function validarDataHora(data, hora) {
-//     const dataHoraSelecionada = new Date(`${data}T${hora}`);
-//     return dataHoraSelecionada > new Date();
-// }
-
-// // Função para obter todos os dias do mês atual
-// function getDiasDoMes(ano, mes) {
-//     const dias = [];
-//     const diasNoMes = new Date(ano, mes, 0).getDate(); // Último dia do mês
-//     for (let dia = 1; dia <= diasNoMes; dia++) {
-//         dias.push({
-//             data: new Date(ano, mes - 1, dia).toISOString().split('T')[0] // Formata para YYYY-MM-DD
-//         });
-//     }
-//     return dias;
-// }
-
-// // Função para renderizar a tabela de batidas
-// function renderizarBatidas(filtroInicio = null, filtroFim = null) {
-//     const tbody = document.getElementById('batidas');
-//     tbody.innerHTML = '';
-
-//     const agora = new Date();
-//     const anoAtual = agora.getFullYear();
-//     const mesAtual = agora.getMonth() + 1;
-
-//     let diasDoMes = getDiasDoMes(anoAtual, mesAtual);
-
-//     if (filtroInicio && filtroFim) {
-//         const dataInicio = new Date(filtroInicio);
-//         const dataFim = new Date(filtroFim);
-//         diasDoMes = diasDoMes.filter(dia => {
-//             const dataDia = new Date(dia.data);
-//             return dataDia >= dataInicio && dataDia <= dataFim;
-//         });
-//     }
-
-//     diasDoMes.forEach(dia => {
-//         const batidaDoDia = batidas.find(b => b.data === dia.data);
-//         tbody.innerHTML += `
-//             <tr>
-//                 <td>${new Date(dia.data).toLocaleDateString('pt-BR')}</td>
-//                 <td>
-//                     ${batidaDoDia ? batidaDoDia.registros.map(registro => `
-//                         <p>${registro.manual ? '➕' : ''}${registro.hora} ${formatarTipo(registro.tipo)}</p>
-//                     `).join('') : 'Sem batida'}
-//                 </td>
-//                 <td>
-//                     <button onclick="abrirModal('${dia.data}')">Incluir/Editar</button>
-//                 </td>
-//             </tr>
-//         `;
-//     });
-
-//     const tabelaRelatorio = document.getElementById('tabela-relatorio');
-//     tabelaRelatorio.style.overflowY = 'auto';
-//     tabelaRelatorio.style.maxHeight = '400px';
-// }
-
-// // Função para abrir o modal
-// function abrirModal(data) {
-//     document.getElementById('modal-batida').style.display = 'block';
-//     document.getElementById('data-modal').value = data;
-//     document.getElementById('hora-modal').value = '';
-// }
-
-// // Função para fechar o modal
-// function fecharModal() {
-//     document.getElementById('modal-batida').style.display = 'none';
-// }
-
-// // Função para salvar a batida do modal
-// function salvarBatidaModal() {
-//     const data = document.getElementById('data-modal').value;
-//     const hora = document.getElementById('hora-modal').value;
-//     const tipoBatida = document.getElementById('tipo-batida-modal').value;
-//     const justificativa = document.getElementById('justificativa-modal').value;
-
-//     if (!data || !hora) {
-//         alert("Por favor, selecione uma data e uma hora.");
-//         return;
-//     }
-
-//     if (validarDataHora(data, hora)) {
-//         alert("Não é possível incluir uma batida futura");
-//         return;
-//     }
-
-//     registrarBatida(data, tipoBatida, justificativa, hora, true);
-//     fecharModal();
-//     renderizarBatidas();
-// }
-
-// // Função para aplicar o filtro
-// function aplicarFiltro() {
-//     const inicio = document.getElementById('data-inicio').value;
-//     const fim = document.getElementById('data-fim').value;
-
-//     if (inicio && fim) {
-//         renderizarBatidas(inicio, fim);
-//     } else {
-//         alert('Selecione um período válido.');
-//     }
-// }
-
-// // Função para formatar o tipo de batida
-// function formatarTipo(tipo) {
-//     switch (tipo) {
-//         case 'entrada': return 'E1';
-//         case 'intervalo': return 'S1';
-//         case 'volta-intervalo': return 'E2';
-//         case 'saida': return 'S2';
-//         default: return '';
-//     }
-// }
-
-// // Função para inicializar a tabela ao carregar a página
-// document.addEventListener('DOMContentLoaded', function () {
-//     renderizarBatidas();
-// });
 
 let batidas = JSON.parse(localStorage.getItem('batidas')) || [];
 
@@ -189,28 +38,6 @@ function registrarBatida(data, tipoBatida, justificativa, hora, manual = false) 
     salvarBatidas();
 }
 
-// function registrarBatida(data, tipoBatida, justificativa, hora, manual = false) {
-//     const batidaExistente = batidas.find(b => b.data === data);
-//     const novaBatida = {
-//         data: data,
-//         tipo: tipoBatida,
-//         justificativa: justificativa || "Sem justificativa",
-//         hora: hora,
-//         manual: manual
-//     };
-
-//     if (batidaExistente) {
-//         batidaExistente.registros.push(novaBatida);
-//     } else {
-//         batidas.push({
-//             data: data,
-//             registros: [novaBatida]
-//         });
-//     }
-
-//     salvarBatidas();
-// }
-
 // Função para verificar se a data e hora selecionadas são no futuro
 function validarDataHora(data, hora) {
     const dataHoraSelecionada = new Date(`${data}T${hora}`);
@@ -220,7 +47,7 @@ function validarDataHora(data, hora) {
 // Função para obter todos os dias do mês atual
 function getDiasDoMes(ano, mes) {
     const dias = [];
-    const diasNoMes = new Date(ano, mes, 0).getDate(); // Último dia do mês
+    const diasNoMes = new Date(ano, mes , 0).getDate(); // Último dia do mês
     for (let dia = 1; dia <= diasNoMes; dia++) {
         dias.push({
             data: new Date(ano, mes - 1, dia).toISOString().split('T')[0] // Formata para YYYY-MM-DD
@@ -269,27 +96,6 @@ function renderizarBatidas(filtroInicio = null, filtroFim = null) {
             </tr>
         `;
     });
-    
-
-    // diasDoMes.forEach(dia => { // parte editiada para a função de excluir batida 
-    //     const batidaDoDia = batidas.find(b => b.data === dia.data);
-    //     tbody.innerHTML += `
-    //         <tr>
-    //             <td>${new Date(dia.data).toLocaleDateString('pt-BR')}</td>
-    //             <td>
-    //                 ${batidaDoDia ? batidaDoDia.registros.map((registro, index) => `
-    //                     <p>${registro.manual ? '➕' : ''}${registro.hora} ${formatarTipo(registro.tipo)}
-    //                         <button onclick="excluirBatida('${dia.data}', ${index})">Excluir</button>
-    //                     </p>
-    //                 `).join('') : 'Sem batida'}
-    //             </td>
-    //             <td>
-    //                 <button onclick="abrirModal('${dia.data}')">Incluir/Editar</button>
-    //             </td>
-    //         </tr>
-    //     `;
-    // });
-
 
     const tabelaRelatorio = document.getElementById('tabela-relatorio');
     tabelaRelatorio.style.overflowY = 'auto';
