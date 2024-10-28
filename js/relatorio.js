@@ -57,8 +57,10 @@ function getDiasDoMes(ano, mes) {
 }
 
 // Função para renderizar a tabela de batidas
+// Função para renderizar a tabela de batidas
 function renderizarBatidas(filtroInicio = null, filtroFim = null) {
     const tbody = document.getElementById('batidas');
+    const btnRegistrarPonto = document.getElementById("btn-registrar-ponto");
     tbody.innerHTML = '';
 
     const agora = new Date();
@@ -82,13 +84,16 @@ function renderizarBatidas(filtroInicio = null, filtroFim = null) {
             <tr>
                 <td>${new Date(dia.data).toLocaleDateString('pt-BR')}</td>
                 <td>
-                    ${batidaDoDia ? batidaDoDia.registros.map((registro, index) => `
-                        <p>
-                            ${registro.manual ? '➕' : ''}${registro.hora} ${formatarTipo(registro.tipo)} 
-                            ${registro.justificativa ? `- Justificativa: ${registro.justificativa}` : ''}
-                            <button onclick="excluirBatida('${dia.data}', ${index})">Excluir</button>
-                        </p>
-                    `).join('') : 'Sem batida'}
+                    ${
+                        batidaDoDia ? batidaDoDia.registros.map((registro, index) => `
+                            <p>
+                                ${registro.manual ? '➕' : ''}${registro.hora} ${formatarTipo(registro.tipo)} 
+                                ${registro.justificativa ? `- Justificativa: ${registro.justificativa}` : ''}
+                                <button onclick="excluirBatida('${dia.data}', ${index})">Excluir</button>
+                            </p>
+                        `).join('') : 'Sem batida'
+                        
+                    }
                 </td>
                 <td>
                     <button onclick="abrirModal('${dia.data}')">Incluir/Editar</button>
@@ -101,6 +106,8 @@ function renderizarBatidas(filtroInicio = null, filtroFim = null) {
     tabelaRelatorio.style.overflowY = 'auto';
     tabelaRelatorio.style.maxHeight = '400px';
 }
+
+
 
 //função para excluir batida
 function excluirBatida(data, index) {
@@ -154,25 +161,6 @@ function salvarBatidaModal() {
     fecharModal();
     renderizarBatidas();
 }
-// function salvarBatidaModal(data) { // Receber a data como parâmetro
-//     const hora = document.getElementById('hora-modal').value;
-//     const tipoBatida = document.getElementById('tipo-batida-modal').value;
-//     const justificativa = document.getElementById('justificativa-modal').value;
-
-//     if (!data || !hora) {
-//         alert("Por favor, selecione uma data e uma hora.");
-//         return;
-//     }
-
-//     if (validarDataHora(data, hora)) {
-//         alert("Não é possível incluir uma batida futura");
-//         return;
-//     }
-
-//     registrarBatida(data, tipoBatida, justificativa, hora, true);
-//     fecharModal();
-//     renderizarBatidas();
-// }
 
 // Função para aplicar o filtro
 function aplicarFiltro() {
