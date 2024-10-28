@@ -7,31 +7,37 @@
     <link rel="stylesheet" href="../css/justificativa.css">
 </head>
 <body>
-    <h1>Justificativa de Ponto Eletrônico</h1>
-<form id="justificativaForm">
-    <label for="nome">Nome:</label>
-    <input type="text" id="nome" name="nome" required>
 
-    <label for="data">Data:</label>
-    <input type="date" id="data" name="data" required>
+    <div id="container"> 
+        <div id="menu">
+            <a href="./index.html" id="btn-relógio">Relógio</a> 
+            <a href="./relatorio.html" id="btn-relatório" target="_blank">Relatório</a> 
+            <a href="./justificativa.html" id="btn-justificar">Justificar Falta</a>  <!-- ADICIONAR ARQUIVO HTML DA JUSTIFICATIVA-->
+         </div> 
+         <div id="main-content">
+             <h1>Justificativa de Ponto Eletrônico</h1>
+                <form id="justificativaForm">
+                    <label for="nome">Nome:</label>
+                    <input type="text" id="nome" name="nome" required>
 
-    <label for="hora">Hora:</label>
-    <input type="time" id="hora" name="hora" required>
+                    <label for="data">Data:</label>
+                    <input type="date" id="data" name="data" required>
 
-    <label for="justificativa">Justificativa:</label>
-    <textarea id="justificativa" name="justificativa" rows="4" required></textarea>
+                    <label for="hora">Hora:</label>
+                    <input type="time" id="hora" name="hora" required>
 
-    <label for="arquivo">Anexar Arquivo:</label>
-    <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
-    <button type="submit">Enviar Justificativa</button>
+                    <label for="justificativa">Justificativa:</label>
+                    <textarea id="justificativa" name="justificativa" rows="4" required></textarea>
+
+                    <label for="arquivo">Anexar Arquivo:</label>
+                    <input type="file" id="arquivo" name="arquivo" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png">
+                    <button type="submit">Enviar Justificativa</button>
+                </form>
+            </div>
+    </div> 
+
     
-</form>
-<div id="container">
-    <div id="menu">
-        <a href="./index.html" id="btn-relógio">Relógio</a> 
-        <a href="./relatorio.html" id="btn-relatório" target="_blank">Relatório</a> 
-        <a href="./justificativa.html" id="btn-justificar">Justificar Falta</a>  <!-- ADICIONAR ARQUIVO HTML DA JUSTIFICATIVA-->
-     </div>
+
 <script> src= "../js/index.js"</script>
 </body>
 </html>
